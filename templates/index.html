@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Data Management</title>
+</head>
+<body>
+    <h1>Employee Data Management</h1>
+    
+    <h2>Add Employee</h2>
+    <form action="/add" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+        <label for="emp_id">Employee ID:</label>
+        <input type="number" name="emp_id" required>
+        <label for="designation">Designation:</label>
+        <input type="text" name="designation" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Employee List</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Employee ID</th>
+            <th>Designation</th>
+            <th>Actions</th>
+        </tr>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee[0] }}</td>
+            <td>{{ employee[1] }}</td>
+            <td>{{ employee[2] }}</td>
+            <td>{{ employee[3] }}</td>
+            <td>
+                <form action="/update/{{ employee[0] }}" method="post">
+                    <button type="submit">Update</button>
+                </form>
+                <a href="/delete/{{ employee[0] }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
